@@ -13,16 +13,39 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  const title = prompt("What is the books title?");
-  const author = prompt("Who is the author?");
-  const pages = prompt("How many pages?");
-  const read = prompt("Have you read it? true or false");
-  
+  const title = prompt('What is the books title?');
+  const author = prompt('Who is the author?');
+  const pages = prompt('How many pages?');
+  const read = prompt('Have you read it? true or false');
+
   myLibrary.push(new Book(title, author, pages, read));
 }
 
+function showBooks() {
+  for (let i = 0; i < myLibrary.length; i += 1) {
+    const newDiv = document.createElement('div');
+    const newTitle = document.createElement('h3');
+    const newBy = document.createElement('h4');
+    const newAuthor = document.createElement('h3');
+    const newPages = document.createElement('h4');
+    const newRead = document.createElement('h4');
 
-const lordOfTheRings = new Book('Lotr', 'Dmitri', 345, false);
+    newDiv.classList.add('book-card');
+
+    newTitle.textContent = myLibrary[i].title;
+    newBy.textContent = 'by';
+    newAuthor.textContent = myLibrary[i].author;
+    newPages.textContent = `${myLibrary[i].pages} pages`;
+    newRead.textContent = myLibrary[i].read ? 'Read' : 'Not read';
+
+    newDiv.append(newTitle, newBy, newAuthor, newPages, newRead);
+
+    document.querySelector('.library-grid').appendChild(newDiv);
+  }
+}
+
+const lordOfTheRings = new Book('Lord of the Rings', 'Dmitri', 345, false);
 myLibrary.push(lordOfTheRings);
 
-addBookToLibrary();
+// addBookToLibrary();
+showBooks();
