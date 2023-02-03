@@ -17,9 +17,6 @@ main {
 }
 
 .form-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
   margin-bottom: 60px;
 }
 
@@ -54,5 +51,7 @@ form li {
   border-radius: 15px;
   box-shadow: 4px 8px 4px rgba(0, 0, 0, 0.3);
   text-align: center;
+  padding-bottom: 1rem;
 }
+
 
