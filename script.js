@@ -5,23 +5,15 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = function info() {
-    return `${this.title} by ${this.author}, ${this.pages} pages, ${
-      this.read ? 'read' : 'not read yet'
-    }`;
-  };
 }
 
-function addBookToLibrary() {
-  const title = prompt('What is the books title?');
-  const author = prompt('Who is the author?');
-  const pages = prompt('How many pages?');
-  const read = prompt('Have you read it? true or false');
-
-  myLibrary.push(new Book(title, author, pages, read));
-}
+document
+  .querySelector('#submit-btn')
+  .addEventListener('click', addBookToLibrary);
 
 function showBooks() {
+  document.querySelector('.library-grid').innerHTML = ''; 
+  
   for (let i = 0; i < myLibrary.length; i += 1) {
     const newDiv = document.createElement('div');
     const newTitle = document.createElement('h3');
@@ -36,7 +28,7 @@ function showBooks() {
     newBy.textContent = 'by';
     newAuthor.textContent = myLibrary[i].author;
     newPages.textContent = `${myLibrary[i].pages} pages`;
-    newRead.textContent = myLibrary[i].read ? 'Read' : 'Not read';
+    newRead.textContent = myLibrary[i].read === 'true' ? 'Read' : 'Not read';
 
     newDiv.append(newTitle, newBy, newAuthor, newPages, newRead);
 
@@ -44,8 +36,17 @@ function showBooks() {
   }
 }
 
+function addBookToLibrary() {
+  const title = document.querySelector('#title').value;
+  const author = document.querySelector('#author').value;
+  const pages = document.querySelector('#pages').value;
+  const read = document.querySelector('#read').value;
+
+  myLibrary.push(new Book(title, author, pages, read));
+  showBooks();
+}
+
 const lordOfTheRings = new Book('Lord of the Rings', 'Dmitri', 345, false);
 myLibrary.push(lordOfTheRings);
 
-// addBookToLibrary();
 showBooks();
